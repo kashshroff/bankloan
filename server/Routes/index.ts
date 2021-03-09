@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import User from './Users'
 
 // Declare router
 const router = Router();
@@ -6,7 +7,7 @@ const router = Router();
 // For internal router
 // const router = Router({ mergeParams: true });
 
-// Sample router
-// router.use('/customer', Method);
+// Users router
+router.use('/user', User);
 
 export default router;
