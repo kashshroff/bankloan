@@ -1,10 +1,18 @@
-import express from "express";
+import express from 'express'
+import * as dotenv from 'dotenv'
+import apiRouter from './Routes';
+//For environment variables
+dotenv.config()
 
-const app = express();
-const port = 5000;
-app.get("/", (req, res) => {
-  res.send("The sedulous hyena ate the antelope!");
-});
-app.listen(port, () => {
-    console.log("Server running at port: " + port);
-});
+
+const app = express()
+
+// Body Parser middleware
+app.use(express.json())
+
+// Routes goes here
+app.use('/api', apiRouter);
+
+const port = process.env.PORT || 5000 
+
+app.listen(port, () => console.log(`Server started on port : ${port}`))
