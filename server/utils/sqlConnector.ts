@@ -17,6 +17,7 @@ export const sqlDbConnection = function () {
         reject(err);
         return;
       }
+      console.log("Connection made successfully")
       resolve(connection);
       // connection.release();
     });

@@ -31,6 +31,7 @@ export const auth = async(req: any, res: any, next: Function) => {
         let result: any = await db.execute(getActiveUserById(user_id))
         if(result.rowCount){
             req.user = result.rows[0]
+            delete req.user.password
             next()
         }else {
             res.status(404).send({

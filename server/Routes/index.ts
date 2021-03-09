@@ -8,6 +8,6 @@ const router = Router();
 // const router = Router({ mergeParams: true });
 
 // Users router
-router.use('/user', User);
+router.use('/users', User);
 
 export default router;
