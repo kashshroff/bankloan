@@ -11,6 +11,11 @@ const app = express()
 app.use(express.json())
 
 // Routes goes here
+app.use('/', (req, res) => {
+  res.send({
+    message: "You will get a loan someday"
+  })
+})
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 5000 
