@@ -1,42 +1,14 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, Link, } from "react-router-dom";
-import ProtectedRoute from "./Router/ProtectedRoute";
-import Secret from "./Pages/Secret";
+import React from "react";
+import { useDispatch } from 'react-redux'
+import { loadUser } from "./Actions/authActions";
+import Router from './Router/index'
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const login = () => {
-    setIsAuthenticated(true);
-  };
-
-  const logout = () => {
-    setIsAuthenticated(false);
-  };
+  const dispatch = useDispatch();
+  dispatch(loadUser())
 
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            {isAuthenticated ? (
-              <Redirect to="/secret" />
-            ) : (
-              <div>
-                <h1>Homepage</h1>
-                <Link to="/secret">Go to secret</Link>
-                <br></br>
-                <button onClick={login}>Log in</button>
-              </div>
-            )}
-          </Route>
-          <ProtectedRoute isAuthenticated={isAuthenticated} path="/secret" logout={logout} component={Secret} />
-          <Route path="*">
-            <div>404 Not found </div>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+      <Router />
   );
 }
 

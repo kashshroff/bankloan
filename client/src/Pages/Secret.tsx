@@ -1,10 +1,9 @@
 import React from "react";
 
-function Secret({ logout, ...rest }) {
+function Secret(props) {
   return (
     <div>
       <h1>Secret</h1>
-      <button onClick={logout}>Log out</button>
     </div>
   );
 }
