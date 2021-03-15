@@ -1,21 +1,19 @@
 import express from 'express'
 import * as dotenv from 'dotenv'
-import apiRouter from './Routes';
 //For environment variables
 dotenv.config()
-
+import apiRouter from './Routes';
+import cors from 'cors'
 
 const app = express()
 
 // Body Parser middleware
 app.use(express.json())
 
+// CORS
+app.use(cors());
+
 // Routes goes here
-app.use('/', (req, res) => {
-  res.send({
-    message: "You will get a loan someday"
-  })
-})
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 5000 
