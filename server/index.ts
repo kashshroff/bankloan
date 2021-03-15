@@ -3,11 +3,15 @@ import * as dotenv from 'dotenv'
 //For environment variables
 dotenv.config()
 import apiRouter from './Routes';
+import cors from 'cors'
 
 const app = express()
 
 // Body Parser middleware
 app.use(express.json())
+
+// CORS
+app.use(cors());
 
 // Routes goes here
 app.use('/api', apiRouter);

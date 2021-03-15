@@ -5,7 +5,14 @@ import { useSelector } from "react-redux";
 function ProtectedRoute({ component: Component, ...rest }) {
 
   let isAuthenticated: boolean = useSelector((state: any) => state.auth.isAuthenticated)
+  let isLoading: boolean = useSelector((state: any) => state.auth.isLoading)
   console.log("AUTH STATE = ", isAuthenticated)
+  console.log("Loading STATE = ", isLoading)
+
+  if(isLoading)
+    return (
+      <div>Loading......</div>
+    )
 
   return (
     <Route

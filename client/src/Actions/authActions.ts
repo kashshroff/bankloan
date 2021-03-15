@@ -14,7 +14,7 @@ import {returnErrors, clearErrors} from './errorActions'
 import axios from 'axios'
 
 // Check token and load user
-export const loadUser = () => (dispatch: any, getState: any) => {
+export const loadUser = () => (dispatch: any) => {
     
     // Set to loading screen
     dispatch({ type: USER_LOADING })
@@ -35,7 +35,7 @@ export const loadUser = () => (dispatch: any, getState: any) => {
     }
 
     // Fetch User
-    axios.get('/api/user', {headers})
+    axios.get('users', {headers})
         .then((res: any) => {
             if(!res.error){
                 dispatch(clearErrors())
