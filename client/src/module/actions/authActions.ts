@@ -1,5 +1,5 @@
-import { getToken } from './../Utils/index';
-import { commonHeaders } from './../Constants/headers';
+import { getToken } from '../../utils/index';
+import { commonHeaders } from '../../constant/headers';
 import {
     USER_LOADING,
     USER_LOADED,

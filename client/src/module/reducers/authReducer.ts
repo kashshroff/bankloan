@@ -1,4 +1,4 @@
-import { getToken, removeToken, setToken } from './../Utils/index';
+import { getToken, removeToken, setToken } from '../../utils/index';
 import {
     USER_LOADING,
     USER_LOADED,
@@ -8,7 +8,7 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     REGISTER_FAILED
-} from '../Actions/types'
+} from '../actions/types'
 
 const initialState = {
     token: getToken(),
