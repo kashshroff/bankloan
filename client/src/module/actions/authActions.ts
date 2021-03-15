@@ -1,4 +1,4 @@
-import { getToken } from '../../utils/index';
+import { getToken } from '../../utils';
 import { commonHeaders } from '../../constant/headers';
 import {
     USER_LOADING,
@@ -6,8 +6,7 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGOUT_SUCCESS,
-    REGISTER_SUCCESS,
-    REGISTER_FAILED
+    REGISTER_SUCCESS
 } from './types'
 import {returnErrors, clearErrors} from './errorActions'
 
