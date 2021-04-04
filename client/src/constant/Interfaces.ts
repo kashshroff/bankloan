@@ -10,6 +10,14 @@ export interface payload {
     id: string
 }
 
+export interface User {
+    id: number
+    name: string
+    email: string
+    phone: string
+    status: boolean
+}
+
 // export interface ActionObject {
 //     type: string
 //     payload: payload

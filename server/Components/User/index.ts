@@ -22,7 +22,7 @@ export const login = async(req: any, res: any) => {
 
                 res.send({
                     error: false,
-                    user: result.rows[0],
+                    data: result.rows[0],
                     token,
                     message: "User fetched successfully"
                 })
