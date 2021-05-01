@@ -6,7 +6,8 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGOUT_SUCCESS,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    REGISTER_FAILED
 } from './types'
 import {returnErrors, clearErrors} from './errorActions'
 
@@ -40,7 +41,7 @@ export const loadUser = () => (dispatch: any) => {
                 dispatch(clearErrors())
                 dispatch({
                     type: USER_LOADED,
-                    payload: res.data
+                    payload: res.data.data
                 })
             }else {
                 dispatch(returnErrors(res.message))
@@ -57,13 +58,40 @@ export const loadUser = () => (dispatch: any) => {
 
 export const loginUser = (data: Object) => (dispatch: any, getState: any) => {
     dispatch({ type: USER_LOADING })
-    dispatch({type: LOGIN_SUCCESS, payload: data})
-
+    // Fetch User
+    axios.post('users/login', data)
+    .then((res: any) => {
+        if(!res.error){
+            dispatch(clearErrors())
+            console.log(res.data)
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: {token: res.data.token, user: res.data.data}
+            })
+        }else {
+            dispatch(returnErrors(res.message))
+            dispatch({ type: AUTH_ERROR })
+        }
+    })
+    .catch(err => {
+        dispatch(returnErrors(err))
+        dispatch({ type: AUTH_ERROR })
+    })
 }
 
 export const registerUser = (data: Object) => (dispatch: any, getState: any) => {
     dispatch({ type: USER_LOADING })
-    dispatch({type: REGISTER_SUCCESS, payload: data})
+    axios.post('users', data)
+    .then(res => {
+        dispatch(clearErrors())
+        if(res.data && !res.data.error)
+            dispatch({type: REGISTER_SUCCESS, payload: res.data.data})
+    })
+    .catch(error => {
+        dispatch(returnErrors(error))
+        dispatch({ type: AUTH_ERROR })
+        dispatch({ type: REGISTER_FAILED })
+    })
 
 }
 

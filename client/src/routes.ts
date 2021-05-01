@@ -1,3 +1,6 @@
 export const HOME = "/home"
 export const LOGIN = "/login"
 export const REGISTER = "/register"
+export const DASHBOARD = "/dashboard"
+export const SELFLOAN = "/self-loan"
+export const REFER = "/refer-a-friend"

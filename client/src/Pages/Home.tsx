@@ -1,12 +1,20 @@
+import { IonContent, IonPage } from "@ionic/react";
 import React from "react";
-import { Link } from 'react-router-dom'
+import Header from '../component/header'
+import { useSelector } from 'react-redux'
+import { User } from "../constant/Interfaces";
 
-function Home({ logout, ...rest }) {
+function Home() {
+
+  let user: User = useSelector((state: any) => state.auth.user)
+
   return (
-    <div>
-      <h1>Home</h1>
-      <Link to="/signup">Sign up</Link>
-    </div>
+    <IonPage>
+      <Header title="Bankloan Homepage" />
+      <IonContent>
+        Hello {user ? user.name : ''}
+      </IonContent>
+    </IonPage>
   );
 }
 
